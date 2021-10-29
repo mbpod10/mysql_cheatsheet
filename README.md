@@ -3,10 +3,12 @@ During my time as a developer I have used countless technologies with their own 
 
 ## Step 1 - Open System Preferences
 - At the bottom of the System Preferences GUI, there will be a MySQL icon. Double Click it.
+
 ![system preferences](photos/system_preferences.png)
 
 ## Step 2 - Click `Start MySQL Server`
 ![start server](photos/start_server.png)
+
 Enter computer password
  - MySQL is an open source relational database management system (RDBMS) with a client-server model. RDBMS is a software or service used to create and manage databases based on a relational model.
  - Computers that install and run RDBMS software are called clients. Whenever they need to access data, they connect to the RDBMS server. That’s the “client-server” part
@@ -55,6 +57,8 @@ VALUES("http://localhost:3000/photo", "My description");
 
 ## Step 6 - Run `.sql` File From SQL Console
 Simply run `source/<FILE_NAME.sql>` to run the sql file.
+<b>MUST BE IN MySQL console! </b>
+
 In our example, run:
 ```sql
 source example.sql
@@ -69,7 +73,7 @@ Query OK, 0 rows affected (0.02 sec)
 Query OK, 1 row affected (0.01 sec)
 ```
 ## Step 7 - Make Sure It Worked
-Either run `SELECT * FROM photos;` OR put `SELECT * FROM photos;` at the bottom of the sql file
+Either run `SELECT * FROM photos;` OR put `SELECT * FROM photos;` at the bottom of the sql file and run `source example.sql` in the MySQL console.
 ```
 +----+-----------------------------+----------------+
 | id | image_url                   | description    |
@@ -77,3 +81,21 @@ Either run `SELECT * FROM photos;` OR put `SELECT * FROM photos;` at the bottom 
 |  1 | http://localhost:3000/photo | My description |
 +----+-----------------------------+----------------+
 ```
+
+# Errors
+If there were any errors, we may need to add mysql to the $PATH on your computer so it can understand the mysql commands
+First we need to find the path of mysql run command:
+```
+which mysql
+>>> /usr/local/mysql/bin/mysql
+```
+Now, we need to add that to the .zshrc file:
+```
+open ~/.zshrc
+```
+Add mysql path to the $PATH in .zshrc file:
+```js
+// .zshrc file:
+export PATH="/usr/local/mysql/bin/mysql:$PATH"
+```
+SQL commands should now work
